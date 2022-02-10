@@ -1,0 +1,236 @@
+$f-input: 24px;
+$f-input-title: 20px;
+
+$c-gray: rgba(213, 213, 213, 0.7);
+$c-blue: #35a9de;
+
+$g-standart_up: linear-gradient(0deg, rgba(255, 255, 255, 1) 0%, rgba(235, 235, 235, 1) 100%);
+$g-standart_down: linear-gradient(0deg, rgba(235, 235, 235, 1) 0%, rgba(255, 255, 255, 1) 100%);
+
+$t-input: 0.3s ease;
+// ------ common styles for input ------
+
+.input-div {
+	display: flex;
+	flex-direction: column;
+	align-items: baseline;
+	user-select: none;
+	width: 100%;
+}
+
+.input-title {
+	display: inline;
+	padding: 5px 10px 2px 10px;
+	margin: 0 0 0 10px;
+	background: $g-standart-up;
+	border-radius: 10px 10px 0 0;
+	font-size: $f-input-title;
+	font-weight: 500;
+	color: $c-blue;
+	transition: $t-input;
+}
+
+.input-title.active-focus,
+.input-title.active-focus-from-btn {
+	background: $c-blue;
+	color: white;
+	transition: $t-input;
+}
+
+.input {
+	padding: 18px 15px 18px 15px;
+	border-radius: 10px;
+	border: solid 3px $c-gray;
+	transition: $t-input;
+	font-size: $f-input;
+	font-weight: 600;
+	outline: none;
+	box-sizing: border-box;
+	width: 100%;
+}
+
+.input::placeholder {
+	color: $c-gray;
+	font-weight: 500;
+}
+
+.input:focus,
+.input.active-focus-from-btn {
+	border-color: $c-blue;
+	box-shadow: 1px 1px 4px 0 $c-gray;
+	transition: $t-input;
+}
+
+.input-btn {
+	position: relative;
+	width: 30px;
+	height: 50%;
+	cursor: pointer;
+}
+
+// ------ styles for input by type ------
+
+.input-text {
+	&__title {
+	}
+
+	&__input {
+	}
+}
+
+.input-password {
+	&__title {
+	}
+
+	&__input {
+	}
+
+	&__body {
+		display: flex;
+		width: 100%;
+	}
+
+	&__eye {
+		width: 30px;
+		margin: 0 0 0 10px;
+		cursor: pointer;
+	}
+}
+
+.input-selection {
+	width: 100%;
+
+	&__title {
+	}
+	&__wrapper-selection {
+		width: 100%;
+	}
+	&__select {
+		padding: 18px 60px 18px 15px;
+		-moz-appearance: none;
+		-webkit-appearance: none;
+		appearance: none;
+		width: 100%;
+		cursor: pointer;
+	}
+	&__select::-ms-expand {
+		display: none;
+	}
+
+	&__wrapper-selection {
+		position: relative;
+	}
+
+	&__wrapper-selection svg {
+		position: absolute;
+		width: 30px;
+		transform: rotate(-90deg);
+		margin: auto;
+		top: 0;
+		left: auto;
+		bottom: 0;
+		right: 20px;
+
+		fill: $c-gray;
+		transition: $t-input;
+
+		pointer-events: none;
+	}
+
+	&__wrapper-selection svg.active-arrow {
+		position: absolute;
+		width: 30px;
+		transform: rotate(90deg);
+		margin: auto;
+		top: 0;
+		left: auto;
+		bottom: 0;
+		right: 20px;
+
+		transition: $t-input;
+		fill: $c-gray;
+		pointer-events: none;
+	}
+}
+
+.input-area {
+	&__title {
+	}
+
+	&__area {
+		min-width: 100%;
+		min-height: 100px;
+	}
+}
+
+.input-stepper {
+	&__body {
+		position: relative;
+		width: 100%;
+		&__input {
+			position: relative;
+		}
+		.stepper-btn {
+			z-index: 0;
+			border-radius: 0 10px 10px 0;
+			border: solid 3px $c-gray;
+			overflow: hidden;
+			position: absolute;
+			top: 0;
+			left: auto;
+			bottom: 0;
+			right: 0;
+
+			display: flex;
+			flex-direction: column;
+			justify-content: space-between;
+
+			transition: $t-input;
+
+			&__inc svg,
+			&__dec svg {
+				position: absolute;
+				width: 20px;
+				margin: auto;
+				top: 0;
+				right: 0;
+				left: 0;
+				bottom: 0;
+
+				fill: $c-blue;
+			}
+
+			&__inc.active-btn svg,
+			&__dec.active-btn svg {
+				fill: white;
+			}
+
+			&__inc.active-btn,
+			&__dec.active-btn {
+				background: $c-blue;
+			}
+
+			&__inc {
+				background: $g-standart_up;
+			}
+
+			&__dec {
+				background: $g-standart_down;
+			}
+
+			&__inc svg {
+				margin: 5px auto auto auto;
+				transform: rotate(90deg);
+			}
+
+			&__dec svg {
+				margin: auto auto 5px auto;
+				transform: rotate(-90deg);
+			}
+		}
+		.stepper-btn.active-focus {
+			border: solid 3px $c-blue;
+			transition: $t-input;
+		}
+	}
+}
