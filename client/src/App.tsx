@@ -4,8 +4,8 @@ import { InputText, InputPassword, InputSelection, InputArea, InputStepper, } fr
 function App() {
 	return (
 		<div className="App">
-			<InputText title='sss' value='sss' name='ddd' />
-			<InputPassword value='' />
+			<InputText title='sss' value='' name='ddd' />
+			<InputPassword value='FFSSDSA' />
 			<InputSelection title='Страна' name='' options={['Россия', 'Англия', 'Германия']} />
 			<InputArea title='О себе' body='' name='' />
 			<InputStepper title='Ваш возраст' name='' />
