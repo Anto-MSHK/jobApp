@@ -6,6 +6,9 @@ $c-blue: #35a9de;
 
 $g-standart_up: linear-gradient(0deg, rgba(255, 255, 255, 1) 0%, rgba(235, 235, 235, 1) 100%);
 $g-standart_down: linear-gradient(0deg, rgba(235, 235, 235, 1) 0%, rgba(255, 255, 255, 1) 100%);
+$g-input: linear-gradient(0deg, rgba(245, 245, 245, 1) 0%, rgba(255, 255, 255, 1) 100%);
+
+$bs-focus: 0 2px 4px rgba(0, 0, 0, .2);
 
 $t-input: 0.3s ease;
 // ------ common styles for input ------
@@ -28,6 +31,7 @@ $t-input: 0.3s ease;
 	font-weight: 500;
 	color: $c-blue;
 	transition: $t-input;
+	z-index: 2;
 }
 
 .input-title.active-focus,
@@ -35,6 +39,12 @@ $t-input: 0.3s ease;
 	background: $c-blue;
 	color: white;
 	transition: $t-input;
+}
+
+.input-title.active-err {
+	color: white;
+	background: red;
+
 }
 
 .input {
@@ -47,6 +57,8 @@ $t-input: 0.3s ease;
 	outline: none;
 	box-sizing: border-box;
 	width: 100%;
+	display: block;
+	z-index: 1;
 }
 
 .input::placeholder {
@@ -56,9 +68,14 @@ $t-input: 0.3s ease;
 
 .input:focus,
 .input.active-focus-from-btn {
+	background: $g-input;
 	border-color: $c-blue;
-	box-shadow: 1px 1px 4px 0 $c-gray;
+	box-shadow: $bs-focus;
 	transition: $t-input;
+}
+
+.input.active-err {
+	border-color: red;
 }
 
 .input-btn {
@@ -67,6 +84,8 @@ $t-input: 0.3s ease;
 	height: 50%;
 	cursor: pointer;
 }
+
+
 
 // ------ styles for input by type ------
 
@@ -99,7 +118,9 @@ $t-input: 0.3s ease;
 
 .input-selection {
 	width: 100%;
-
+	option {
+		color: black;
+	}
 	&__title {
 	}
 	&__wrapper-selection {
@@ -115,6 +136,11 @@ $t-input: 0.3s ease;
 	}
 	&__select::-ms-expand {
 		display: none;
+	}
+
+	&__select.pl-option {
+		font-weight: 500;
+		color: $c-gray;
 	}
 
 	&__wrapper-selection {
@@ -152,6 +178,7 @@ $t-input: 0.3s ease;
 		pointer-events: none;
 	}
 }
+
 
 .input-area {
 	&__title {
@@ -231,6 +258,12 @@ $t-input: 0.3s ease;
 		.stepper-btn.active-focus {
 			border: solid 3px $c-blue;
 			transition: $t-input;
+		}
+		.stepper-btn.active-err{
+			border-color: red;
+		}
+		.stepper-btn.active-err svg {
+			fill: red;
 		}
 	}
 }

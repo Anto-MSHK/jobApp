@@ -1,0 +1,179 @@
+$g-opacity_white: linear-gradient(0deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.35) 100%);
+
+$g-main-blue: linear-gradient(180deg, rgba(2,211,249,1) 0%, rgba(2,161,249,1) 100%);
+$g-disabled-blue: linear-gradient(0deg, rgba(120,207,255,1) 0%, rgba(120,234,255,1) 100%);
+$g-hover-blue: linear-gradient(180deg, rgba(2,211,249,1) 40%, rgba(2,161,249,1) 100%);
+
+$g-main-red: linear-gradient(180deg, rgba(255,144,106,1) 0%, rgba(255,78,78,1) 100%);
+$g-disabled-red: linear-gradient(184deg, rgba(255,175,148,1) 0%, rgba(255,120,120,1) 100%);
+$g-hover-red: linear-gradient(180deg, rgba(255,144,106,1) 40%, rgba(255,78,78,1) 100%);
+
+$c-button-gray: rgb(196, 196, 196);
+
+$t-button: 0.5s ease;
+$t-button-fast: 0.2s ease;
+
+.button{
+	position: relative;
+	min-width: 200px;
+	min-height: 40px;
+	border-radius: 10px;
+	outline: none;
+	border: none;
+
+	cursor: pointer;
+	font-size: 20px;
+	font-weight: 500;
+	color: white;
+	transition: $t-button;
+	overflow: hidden;
+
+	&:disabled, &:hover:disabled{
+		transition: 0.2s ease;
+		font-size: 18px;
+	}
+
+	&:hover:disabled::after{
+		background: none;
+		font-size: 18px;
+	}
+
+	&:focus{
+		border-color: $c-blue;
+		box-shadow: $bs-focus;
+	}
+
+	&:hover{
+		transition: $t-button;
+	}
+
+	&::after{
+		content: '';
+		display: block;
+		position: absolute;
+		top: 0px;
+		bottom: 0px;
+		left: 0px;
+		right: 0px;
+
+		border-radius: 10px;
+		transition: $t-button;
+	}
+
+	&:hover::after{
+		margin: -6px;
+		transition: $t-button;
+		border: rgba(255,255,255,0.5) solid 5px;
+	}
+
+	&::before{
+		content: '';
+		display: block;
+		position: absolute;
+		top: 0px;
+		bottom: 0px;
+		left: 0px;
+		right: 0px;
+
+		border-radius: 10px;
+		margin: 6px;
+		transition: $t-button;
+
+	}
+
+	&.click{
+		font-size: 18px;
+	}
+
+	&.click::after{
+		content: '';
+		display: block;
+		position: absolute;
+		top: 0px;
+		bottom: 0px;
+		left: 0px;
+		right: 0px;
+		margin: 6px;
+
+		border-radius: 10px;
+		border: none;
+		transition: $t-button-fast;
+	}
+
+	&__waiting img{
+		margin: auto;
+		position: absolute;
+		top: 0;
+		bottom: 0;
+		left: 0;
+		right: 0;
+		width: 45px;
+		height: 45px;
+	}
+}
+
+.button-blue{
+	@extend .button;
+	background: $g-main-blue;
+
+	&:focus{
+		background: $g-hover-blue;
+	}
+	
+	&:disabled, &:hover:disabled{
+		background: $g-disabled-blue;
+	}
+
+	&:hover{
+		background: $g-hover-blue;
+	}
+
+	&:hover::after{
+		background: $g-opacity_white;
+	}
+
+	&::before{
+		background: $g-opacity_white;
+	}
+
+	&.click{
+		background: $g-main-blue;
+	}
+
+	&.click::after{
+		background: $g-opacity_white;
+	}
+}
+
+.button-red{
+	@extend .button;
+	background: $g-main-red;
+
+	&:focus{
+		background: $g-hover-red;
+	}
+
+	&:disabled, &:hover:disabled{
+		background: $g-disabled-red;
+	}
+
+	&:hover{
+		background: $g-hover-red;
+	}
+
+	&:hover::after{
+		background: $g-opacity_white;
+	}
+
+	&::before{
+		background: $g-opacity_white;
+	}
+
+	&.click{
+		background: $g-main-red;
+	}
+
+	&.click::after{
+		background: $g-opacity_white;
+	}
+}
