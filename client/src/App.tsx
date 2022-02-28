@@ -48,10 +48,16 @@ function App() {
 						<Input type='select' name='country' title='Страна' options={options} />
 						<Input type='textArea' name='Im' title='О себе' placeholder='Расскажите о себе' />
 						<Input type='stepper' name='age' title='Возраст' defaultCount={18} maxCount={120} />
-						<Button withWaitIcon type="submit" className='form-btn button-blue' disabled={isSubmitting}>Отправить</Button>
+						<Button as='regular' withWaitIcon='black' type="submit" className='form-btn' disabled={isSubmitting}>Отправить</Button>
+						<Button as='regular-op-bd' withWaitIcon='black' type="submit" className='form-btn' disabled={isSubmitting}>Отправить</Button>
+						<Button as='regular-op' withWaitIcon='black' type="submit" className='form-btn' disabled={isSubmitting}>Отправить</Button>
+						<Button as='main-blue' withWaitIcon='black' type="submit" className='form-btn' disabled={isSubmitting}>Отправить</Button>
+						<Button as='main-red' withWaitIcon='black' type="submit" className='form-btn' disabled={isSubmitting}>Отправить</Button>
+						<Button as='simple' withWaitIcon='black' type="submit" className='form-btn' disabled={isSubmitting}>Отправить</Button>
 					</form>
 				)}
 			</Formik>
+
 		</div>
 	);
 }

@@ -2,34 +2,47 @@ $g-opacity_white: linear-gradient(0deg, rgba(255,255,255,0) 0%, rgba(255,255,255
 
 $g-main-blue: linear-gradient(180deg, rgba(2,211,249,1) 0%, rgba(2,161,249,1) 100%);
 $g-disabled-blue: linear-gradient(0deg, rgba(120,207,255,1) 0%, rgba(120,234,255,1) 100%);
-$g-hover-blue: linear-gradient(180deg, rgba(2,211,249,1) 40%, rgba(2,161,249,1) 100%);
 
 $g-main-red: linear-gradient(180deg, rgba(255,144,106,1) 0%, rgba(255,78,78,1) 100%);
 $g-disabled-red: linear-gradient(184deg, rgba(255,175,148,1) 0%, rgba(255,120,120,1) 100%);
-$g-hover-red: linear-gradient(180deg, rgba(255,144,106,1) 40%, rgba(255,78,78,1) 100%);
 
-$c-button-gray: rgb(196, 196, 196);
+$c-simple: #e6e6e6;
+$c-hover-simple: #efefef;
+$c-dis-simple: #7e7e7e;
 
-$t-button: 0.5s ease;
-$t-button-fast: 0.2s ease;
+$c-button-gray: #e2e2e2;
+$c-blue: #35a9de;
+$c-blue-focus: #80c7e7;
+$c-dis: #252525;
+$c-focus: #818181;
 
-.button{
+
+$t-button: 0.7s ease;
+$t-button-fast: 0.1s ease;
+
+
+// ------ common styles for button ------
+
+%button{
 	position: relative;
-	min-width: 200px;
-	min-height: 40px;
+	padding: 10px 20px;
 	border-radius: 10px;
+	overflow: hidden;
+	cursor: pointer;
 	outline: none;
 	border: none;
-
-	cursor: pointer;
+	
 	font-size: 20px;
-	font-weight: 500;
-	color: white;
+	font-weight: 700;
+}
+
+%main-button{
+
+	@extend %button;
 	transition: $t-button;
-	overflow: hidden;
 
 	&:disabled, &:hover:disabled{
-		transition: 0.2s ease;
+		transition: $t-button;
 		font-size: 18px;
 	}
 
@@ -38,9 +51,8 @@ $t-button-fast: 0.2s ease;
 		font-size: 18px;
 	}
 
-	&:focus{
-		border-color: $c-blue;
-		box-shadow: $bs-focus;
+	&:focus::after{
+		background: $g-opacity_white;
 	}
 
 	&:hover{
@@ -55,15 +67,15 @@ $t-button-fast: 0.2s ease;
 		bottom: 0px;
 		left: 0px;
 		right: 0px;
-
+		margin: -2px;
 		border-radius: 10px;
 		transition: $t-button;
 	}
 
 	&:hover::after{
-		margin: -6px;
+		margin: -9px;
 		transition: $t-button;
-		border: rgba(255,255,255,0.5) solid 5px;
+		border: rgba(255,255,255,0.5) solid 8px;
 	}
 
 	&::before{
@@ -94,38 +106,88 @@ $t-button-fast: 0.2s ease;
 		left: 0px;
 		right: 0px;
 		margin: 6px;
-
 		border-radius: 10px;
 		border: none;
 		transition: $t-button-fast;
 	}
-
-	&__waiting img{
-		margin: auto;
-		position: absolute;
-		top: 0;
-		bottom: 0;
-		left: 0;
-		right: 0;
-		width: 45px;
-		height: 45px;
-	}
 }
 
-.button-blue{
-	@extend .button;
-	background: $g-main-blue;
+%regular-button{
+
+	@extend %button;
+	transition: $t-button;
+
+	&:disabled, &:hover:disabled{
+		font-size: 18px;
+		transition: $t-button-fast;
+	}
+
+	&:hover:disabled::after{
+		font-size: 18px;
+		border: $c-blue solid 3px;
+	}
 
 	&:focus{
-		background: $g-hover-blue;
-	}
-	
-	&:disabled, &:hover:disabled{
-		background: $g-disabled-blue;
+		// color: $c-blue-focus;
+		transition: none;
 	}
 
 	&:hover{
-		background: $g-hover-blue;
+		transition: $t-button;
+	}
+
+	&::after{
+		content: '';
+		display: block;
+		position: absolute;
+		top: 0px;
+		bottom: 0px;
+		left: 0px;
+		right: 0px;
+		border-radius: 10px;
+		transition: $t-button;
+	}
+
+	&:hover::after{
+		margin: 0px;
+		transition: $t-button;
+	}
+
+	&.click{
+		font-size: 18px;
+	}
+
+	&.click::after {
+		content: '';
+		display: block;
+		position: absolute;
+		top: 0px;
+		bottom: 0px;
+		left: 0px;
+		right: 0px;
+		margin: 10px;
+		opacity: 0;
+
+		border-radius: 10px;
+		
+		transition: $t-button-fast;
+	}
+}
+
+.button-wait img{
+	width: 45px;
+	height: 45px;
+}
+
+// ------ button styles used ------
+
+.main-blue{
+	@extend %main-button;
+	background: $g-main-blue;
+	color: white;
+	
+	&:disabled, &:hover:disabled{
+		background: $g-disabled-blue;
 	}
 
 	&:hover::after{
@@ -145,20 +207,13 @@ $t-button-fast: 0.2s ease;
 	}
 }
 
-.button-red{
-	@extend .button;
+.main-red{
+	@extend %main-button;
 	background: $g-main-red;
-
-	&:focus{
-		background: $g-hover-red;
-	}
+	color: white;
 
 	&:disabled, &:hover:disabled{
 		background: $g-disabled-red;
-	}
-
-	&:hover{
-		background: $g-hover-red;
 	}
 
 	&:hover::after{
@@ -173,6 +228,122 @@ $t-button-fast: 0.2s ease;
 		background: $g-main-red;
 	}
 
+	&.click::after{
+		background: $g-opacity_white;
+	}
+}
+
+.regular{
+	@extend %regular-button;
+	color: $c-blue;
+	background:white;
+	
+	&:disabled, &:hover:disabled{
+		background: $c-gray;
+		color: #252525;
+	}
+
+	&:hover:disabled::after{
+		margin: -3px;
+	}
+
+	&::after{
+		border: $c-blue solid 3px;
+		margin: -10px;
+	}
+
+	&:hover::after{
+		border: $c-blue solid 3px;
+	}
+
+	&.click::after {
+		border: $c-blue solid 3px;
+	}
+}
+
+.regular-op{
+	@extend %regular-button;
+	color: $c-blue;
+	background:none;
+	
+	&:disabled, &:hover:disabled{
+		color: $c-dis;
+	}
+
+	&:hover:disabled::after{
+		margin: -3px;
+	}
+
+	&::after{
+		border: $c-blue solid 3px;
+		margin: -10px;
+	}
+
+	&:hover::after{
+		border: $c-blue solid 3px;
+	}
+
+	&.click::after {
+		border: $c-blue solid 3px;
+	}
+}
+
+.regular-op-bd{
+	@extend %regular-button;
+	color: $c-blue;
+	background:none;
+	
+	&:disabled, &:hover:disabled{
+		color: $c-dis;
+	}
+
+	&:hover:disabled::after{
+		border: $c-dis solid 3px;
+	}
+
+	&:disabled::after{
+		border: $c-dis solid 3px;
+	}
+
+	&::after{
+		border: $c-blue solid 3px;
+	}
+	
+	&:focus:after{
+		border: $c-blue-focus solid 3px;
+	}
+
+	&:hover::after{
+		border: $c-blue solid 3px;
+		// transition: none;
+	}
+
+	&.click::after {
+	}
+}
+
+.simple{
+	@extend %main-button;
+	color: $c-dis;
+	background: $c-simple;
+
+	&:disabled, &:hover:disabled{
+		color: $c-dis-simple;
+		background: $c-simple;
+	}
+
+	&:focus::after{
+		background: $g-opacity_white;
+	}
+
+	&:hover{
+		background: $c-hover-simple;
+	}
+
+	&:hover::after{
+		background: $g-opacity_white;
+	}
+	
 	&.click::after{
 		background: $g-opacity_white;
 	}

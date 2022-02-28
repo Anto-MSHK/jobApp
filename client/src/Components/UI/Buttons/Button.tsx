@@ -2,20 +2,21 @@ import React, { FC, useRef } from 'react'
 import { useKey } from '../../../hooks/useIsKey';
 import { useToggle } from '../../../hooks/useToggle'
 import { useType } from '../../../hooks/useType'
+import { LinearWaitingIndicator } from '../WaitingIcons/WaitingIndicators';
 
-const eyeClose: string = require("../../../img/interface/line-waiting.svg").default;
-
+const star: string = require("../../../img/interface/star.svg").default;
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-	withWaitIcon?: boolean
-	children: React.ReactNode
+	withWaitIcon?: 'white' | 'blue' | 'black'
+	as: 'main-blue' | 'main-red' | 'regular' | 'regular-op' | 'regular-op-bd' | 'simple'
+	children?: React.ReactNode
 }
 
-export const Button: FC<ButtonProps> = ({ children, withWaitIcon, disabled, className, ...props }) => {
+export const Button: FC<ButtonProps> = ({ as, children, withWaitIcon, disabled, className, ...props }) => {
 	const [clickAdd, setClickAdd] = useToggle('click')
 	const onClick = useType('mouseleave', [clickAdd], [setClickAdd])[0]
 
 	return (
-		<button className={`button ${clickAdd} ${className}`}
+		<button className={`${as} ${className} ${clickAdd}`}
 			disabled={disabled}
 			onMouseDown={onClick}
 			onMouseUp={onClick}
@@ -23,7 +24,8 @@ export const Button: FC<ButtonProps> = ({ children, withWaitIcon, disabled, clas
 			onTouchStart={onClick}
 			onTouchEnd={onClick}
 			{...props}>
-			{disabled && withWaitIcon ? <div className='button__waiting' ><img src={eyeClose} /></div> : children}
+			<span style={disabled && withWaitIcon ? { color: 'rgba(255,255,255,0)' } : {}}>{children}</span>
+			{disabled && withWaitIcon && <LinearWaitingIndicator color={withWaitIcon} className='button-wait' />}
 		</button>
 	)
 }
