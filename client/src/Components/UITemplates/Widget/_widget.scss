@@ -1,0 +1,54 @@
+$c-gray-widget: #f7f7f7;
+$c-blue: #35a9de;
+$c-red: #fd504f;
+
+$shadow: 0px 3px 8px 0px rgba(50, 50, 50, 0.34);
+
+.widget {
+
+	&__top {
+		display: flex;
+		justify-content: space-between;
+		height: 40px;
+		margin: 0 20px;
+
+		position: relative;
+		z-index: 1;
+	}
+
+	&__title.blue {
+		display: table;
+		height: 100%;
+		padding: 0 10px;
+		border-radius: 10px 10px 0 0;
+		font-size: 20px;
+		font-weight: 600;
+		color: white;
+		
+		background: $c-blue;
+	}
+
+	&__title.red {
+		@extend .widget__title.blue;
+		background: $c-red;
+	}
+
+	&__title span {
+		display:table-cell!important;
+		vertical-align:middle;
+	}
+
+	&__button {
+		height: 100%;
+	}
+
+
+	&__body {
+		position: relative;
+		z-index: 1;
+		background: $c-gray-widget;
+		border-radius: 20px;
+		padding: 20px;
+		box-shadow: $shadow;
+	}
+ }

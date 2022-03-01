@@ -12,8 +12,10 @@ html {
 }
 
 .App {
-	width: 500px;
+	width: 100%;
 	padding:	50px;
+	display: flex;
+	justify-content: space-around;
 	// background: black;
 }
 
@@ -22,4 +24,10 @@ html {
 	margin: 10px auto;
 	// width: 100%;
 	// height: 45px;
+}
+
+
+.wid{
+	width: 600px;
+	height: 500px;
 }

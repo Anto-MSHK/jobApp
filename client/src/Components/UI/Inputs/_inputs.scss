@@ -89,21 +89,7 @@ $t-input: 0.3s ease;
 
 // ------ styles for input by type ------
 
-.input-text {
-	&__title {
-	}
-
-	&__input {
-	}
-}
-
 .input-password {
-	&__title {
-	}
-
-	&__input {
-	}
-
 	&__body {
 		display: flex;
 		width: 100%;
@@ -120,8 +106,6 @@ $t-input: 0.3s ease;
 	width: 100%;
 	option {
 		color: black;
-	}
-	&__title {
 	}
 	&__wrapper-selection {
 		width: 100%;
@@ -181,9 +165,6 @@ $t-input: 0.3s ease;
 
 
 .input-area {
-	&__title {
-	}
-
 	&__area {
 		min-width: 100%;
 		min-height: 100px;

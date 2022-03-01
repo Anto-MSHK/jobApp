@@ -4,6 +4,7 @@ import * as Yup from 'yup'
 import './scss/style.scss'
 import { Input } from './Components/UI/Inputs/InputManager';
 import { Button } from './Components/UI/Buttons/Button';
+import { Widget } from './Components/UITemplates/Widget/Widget';
 
 function App() {
 
@@ -48,17 +49,14 @@ function App() {
 						<Input type='select' name='country' title='Страна' options={options} />
 						<Input type='textArea' name='Im' title='О себе' placeholder='Расскажите о себе' />
 						<Input type='stepper' name='age' title='Возраст' defaultCount={18} maxCount={120} />
-						<Button as='regular' withWaitIcon='black' type="submit" className='form-btn' disabled={isSubmitting}>Отправить</Button>
-						<Button as='regular-op-bd' withWaitIcon='black' type="submit" className='form-btn' disabled={isSubmitting}>Отправить</Button>
-						<Button as='regular-op' withWaitIcon='black' type="submit" className='form-btn' disabled={isSubmitting}>Отправить</Button>
-						<Button as='main-blue' withWaitIcon='black' type="submit" className='form-btn' disabled={isSubmitting}>Отправить</Button>
-						<Button as='main-red' withWaitIcon='black' type="submit" className='form-btn' disabled={isSubmitting}>Отправить</Button>
-						<Button as='simple' withWaitIcon='black' type="submit" className='form-btn' disabled={isSubmitting}>Отправить</Button>
+						<Button as='simple' type="submit" className='form-btn' disabled={isSubmitting}>Отправить</Button>
 					</form>
 				)}
 			</Formik>
-
-		</div>
+			<Widget title='Вакансии в вашем городе' withButton='Показать все' className='wid'>
+				<span>Hello!^^</span>
+			</Widget>
+		</div >
 	);
 }
 

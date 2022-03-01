@@ -6,6 +6,8 @@ $g-disabled-blue: linear-gradient(0deg, rgba(120,207,255,1) 0%, rgba(120,234,255
 $g-main-red: linear-gradient(180deg, rgba(255,144,106,1) 0%, rgba(255,78,78,1) 100%);
 $g-disabled-red: linear-gradient(184deg, rgba(255,175,148,1) 0%, rgba(255,120,120,1) 100%);
 
+$g-tab: linear-gradient(0deg, rgba(255, 255, 255, 1) 0%, rgba(235, 235, 235, 1) 100%);
+
 $c-simple: #e6e6e6;
 $c-hover-simple: #efefef;
 $c-dis-simple: #7e7e7e;
@@ -16,12 +18,24 @@ $c-blue-focus: #80c7e7;
 $c-dis: #252525;
 $c-focus: #818181;
 
-
 $t-button: 0.7s ease;
 $t-button-fast: 0.1s ease;
 
+$f-default: 20px;
+$f-click: 18px;
 
 // ------ common styles for button ------
+
+%default-elements{
+	content: '';
+	display: block;
+	position: absolute;
+	top: 0px;
+	bottom: 0px;
+	left: 0px;
+	right: 0px;
+	border-radius: 10px;
+}
 
 %button{
 	position: relative;
@@ -32,23 +46,28 @@ $t-button-fast: 0.1s ease;
 	outline: none;
 	border: none;
 	
-	font-size: 20px;
+	font-size: $f-default;
 	font-weight: 700;
+
+	transition: $t-button;
+
+	&::after, &.click::after{
+		@extend %default-elements;
+	}
 }
 
 %main-button{
 
 	@extend %button;
-	transition: $t-button;
 
 	&:disabled, &:hover:disabled{
 		transition: $t-button;
-		font-size: 18px;
+		font-size: $f-click;
 	}
 
 	&:hover:disabled::after{
 		background: none;
-		font-size: 18px;
+		font-size: $f-click;
 	}
 
 	&:focus::after{
@@ -60,15 +79,7 @@ $t-button-fast: 0.1s ease;
 	}
 
 	&::after{
-		content: '';
-		display: block;
-		position: absolute;
-		top: 0px;
-		bottom: 0px;
-		left: 0px;
-		right: 0px;
-		margin: -2px;
-		border-radius: 10px;
+		margin: -4px;
 		transition: $t-button;
 	}
 
@@ -79,34 +90,18 @@ $t-button-fast: 0.1s ease;
 	}
 
 	&::before{
-		content: '';
-		display: block;
-		position: absolute;
-		top: 0px;
-		bottom: 0px;
-		left: 0px;
-		right: 0px;
+		@extend %default-elements;
 
-		border-radius: 10px;
 		margin: 6px;
 		transition: $t-button;
-
 	}
 
 	&.click{
-		font-size: 18px;
+		font-size: $f-click;
 	}
 
 	&.click::after{
-		content: '';
-		display: block;
-		position: absolute;
-		top: 0px;
-		bottom: 0px;
-		left: 0px;
-		right: 0px;
 		margin: 6px;
-		border-radius: 10px;
 		border: none;
 		transition: $t-button-fast;
 	}
@@ -115,20 +110,18 @@ $t-button-fast: 0.1s ease;
 %regular-button{
 
 	@extend %button;
-	transition: $t-button;
 
 	&:disabled, &:hover:disabled{
-		font-size: 18px;
+		font-size: $f-click;
 		transition: $t-button-fast;
 	}
 
 	&:hover:disabled::after{
-		font-size: 18px;
+		font-size: $f-click;
 		border: $c-blue solid 3px;
 	}
 
 	&:focus{
-		// color: $c-blue-focus;
 		transition: none;
 	}
 
@@ -137,14 +130,6 @@ $t-button-fast: 0.1s ease;
 	}
 
 	&::after{
-		content: '';
-		display: block;
-		position: absolute;
-		top: 0px;
-		bottom: 0px;
-		left: 0px;
-		right: 0px;
-		border-radius: 10px;
 		transition: $t-button;
 	}
 
@@ -154,21 +139,13 @@ $t-button-fast: 0.1s ease;
 	}
 
 	&.click{
-		font-size: 18px;
+		font-size: $f-click;
 	}
 
 	&.click::after {
-		content: '';
-		display: block;
-		position: absolute;
-		top: 0px;
-		bottom: 0px;
-		left: 0px;
-		right: 0px;
 		margin: 10px;
 		opacity: 0;
 
-		border-radius: 10px;
 		
 		transition: $t-button-fast;
 	}
@@ -347,4 +324,32 @@ $t-button-fast: 0.1s ease;
 	&.click::after{
 		background: $g-opacity_white;
 	}
+}
+
+.tab{
+	@extend %main-button;
+	color: $c-blue;
+	font-weight: 500;
+	background: $g-tab;
+	border-radius: 10px 10px 0 0;
+	padding: 0 10px;
+
+	&:disabled, &:hover:disabled{
+		color: $c-dis-simple;
+		font-size: $f-default;
+	}
+
+	&.click{
+		font-size: $f-default;
+	}
+
+	&:focus::after{
+		background: none;
+	}
+
+	// &:hover::after{
+	// 	margin: -10px;
+	// 	transition: $t-button;
+	// 	border: rgba(255,255,255,0.5) solid 8px;
+	// }
 }
