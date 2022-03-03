@@ -299,6 +299,11 @@ $f-click: 18px;
 	}
 }
 
+.regular-bd{
+	@extend .regular-op-bd;
+	background:white;
+}
+
 .simple{
 	@extend %main-button;
 	color: $c-dis;

@@ -7,7 +7,7 @@ import { LinearWaitingIndicator } from '../WaitingIcons/WaitingIndicators';
 const star: string = require("../../../img/interface/star.svg").default;
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
 	withWaitIcon?: 'white' | 'blue' | 'black'
-	as: 'main-blue' | 'main-red' | 'regular' | 'regular-op' | 'regular-op-bd' | 'simple' | 'tab'
+	as: 'main-blue' | 'main-red' | 'regular' | 'regular-op' | 'regular-op-bd' | 'regular-bd' | 'simple' | 'tab'
 	children?: React.ReactNode
 }
 

@@ -166,7 +166,8 @@ $t-input: 0.3s ease;
 
 .input-area {
 	&__area {
-		min-width: 100%;
+		// min-width: 100%;
+		min-width: 250px;
 		min-height: 100px;
 	}
 }
